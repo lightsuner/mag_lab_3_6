@@ -3,11 +3,12 @@ package com.zerg;
 import com.gameapi.BuildingFactory;
 import com.gameapi.GameObjectsPack;
 import com.gameapi.UnitFactory;
+import com.zerg.building.ZergBuildingFactory;
+import com.zerg.unit.ZergUnitFactory;
 import org.pf4j.Extension;
 import org.pf4j.Plugin;
 import org.pf4j.PluginWrapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ZergPackPlugin extends Plugin {
@@ -18,6 +19,14 @@ public class ZergPackPlugin extends Plugin {
 
     @Extension
     public static class ZergGameObjectsPack implements GameObjectsPack {
+        private final ZergUnitFactory mUnitFactory;
+        private final ZergBuildingFactory mBuildingFactory;
+
+        public ZergGameObjectsPack() {
+            mUnitFactory = new ZergUnitFactory();
+            mBuildingFactory = new ZergBuildingFactory();
+        }
+
         @Override
         public String getPackId() {
             return "zergPack";
@@ -25,22 +34,22 @@ public class ZergPackPlugin extends Plugin {
 
         @Override
         public List<String> getUnitsList() {
-            return new ArrayList<>();
+            return mUnitFactory.getUnitsList();
         }
 
         @Override
         public UnitFactory getUnitFactory() {
-            return null;
+            return mUnitFactory;
         }
 
         @Override
         public List<String> getBuildingsList() {
-            return new ArrayList<>();
+            return mBuildingFactory.getBuildingsList();
         }
 
         @Override
         public BuildingFactory getBuildingFactory() {
-            return null;
+            return mBuildingFactory;
         }
     }
 }

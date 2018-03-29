@@ -11,7 +11,7 @@ public interface GameObject {
 
     int getY();
 
-    void setY(int Y);
+    void setY(int y);
 
     int getWidth();
 

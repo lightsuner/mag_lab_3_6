@@ -1,13 +1,9 @@
 package com.bsuir.lab36;
 
-import org.pf4j.GradleDevelopmentPluginClasspath;
-import org.pf4j.GradlePropertiesPluginDescriptorFinder;
 import com.gameapi.GameObjectsPack;
 import javafx.stage.Stage;
 import org.pf4j.*;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 //public class Main extends Application {
@@ -25,26 +21,18 @@ public class Main {
 
     private static void testPlugins() {
         // create the plugin manager
-        PluginManager pluginManager = new DefaultPluginManager() {
-
-            @Override
-            protected PluginDescriptorFinder createPluginDescriptorFinder() {
-                return new CompoundPluginDescriptorFinder()
-                    //.add(new GradlePropertiesPluginDescriptorFinder())
-                    .add(new PropertiesPluginDescriptorFinder())
-                    .add(new ManifestPluginDescriptorFinder());
-            }
-        };
+        PluginManager pluginManager = new DefaultPluginManager();
 
         // start and load all plugins of application
         pluginManager.loadPlugins();
         pluginManager.startPlugins();
 
         // retrieve all extensions for "Greeting" extension point
-        List<GameObjectsPack> packs = pluginManager.getExtensions(GameObjectsPack.class);
-        System.out.println("Plugins count: " + packs.size());
-        for (GameObjectsPack pack : packs) {
-            System.out.println(">>> " + pack.getPackId());
+        List<GameObjectsPack> gameObjectPacks = pluginManager.getExtensions(GameObjectsPack.class);
+        System.out.println("Plugins count: " + gameObjectPacks.size());
+        for (GameObjectsPack gamePack : gameObjectPacks) {
+            System.out.println(">>> " + gamePack.getPackId() + ":\tBuildings: " + String
+                .join(", ", gamePack.getBuildingsList()) + "\t Units: " + String.join(", ", gamePack.getUnitsList()));
         }
 
         // stop and unload all plugins

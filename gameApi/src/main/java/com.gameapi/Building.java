@@ -11,6 +11,4 @@ public interface Building extends GameObject {
     void setShield(int shield);
 
     ResourceCost getCost();
-
-    void setCost(ResourceCost cost);
 }

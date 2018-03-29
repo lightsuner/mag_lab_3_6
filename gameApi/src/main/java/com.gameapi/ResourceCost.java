@@ -8,5 +8,5 @@ public interface ResourceCost {
 
     int getVespene();
 
-    void setVespene(int Vespene);
+    void setVespene(int vespene);
 }

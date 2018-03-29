@@ -10,6 +10,4 @@ public interface BuildableUnit {
     void setBuildFrom(String buildFrom);
 
     ResourceCost getCost();
-
-    void setCost(ResourceCost cost);
 }
