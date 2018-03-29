@@ -1,0 +1,4 @@
+dependencies {
+    compile group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}"
+}
+
