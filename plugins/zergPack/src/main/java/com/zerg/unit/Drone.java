@@ -11,6 +11,7 @@ public class Drone extends AbstractZergBuildableUnit {
         mBuildFrom = Larva.UNIT_NAME;
         mBuildTime = 17;
         mCost = new DefaultResourceCost(50);
+        mSupply = 1;
     }
 
     @Override

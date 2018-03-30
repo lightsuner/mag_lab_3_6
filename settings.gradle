@@ -3,3 +3,4 @@ include 'app'
 
 include 'plugins'
 include 'plugins:zergPack'
+include 'plugins:terranPack'
