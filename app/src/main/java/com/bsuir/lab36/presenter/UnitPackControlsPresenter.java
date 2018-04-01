@@ -1,9 +1,9 @@
 package com.bsuir.lab36.presenter;
 
 import com.bsuir.lab36.utils.Callback;
-import com.gameapi.GameObject;
-import com.gameapi.GameObjectsPack;
-import com.gameapi.exception.FactoryFailedException;
+import com.datatransformerapi.GameObject;
+import com.datatransformerapi.GameObjectsPack;
+import com.datatransformerapi.exception.FactoryFailedException;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

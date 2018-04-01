@@ -1,8 +1,8 @@
 package com.terran;
 
-import com.gameapi.BuildingFactory;
-import com.gameapi.GameObjectsPack;
-import com.gameapi.UnitFactory;
+import com.datatransformerapi.BuildingFactory;
+import com.datatransformerapi.GameObjectsPack;
+import com.datatransformerapi.UnitFactory;
 
 import com.terran.building.TerranBuildingFactory;
 import com.terran.unit.TerranUnitFactory;

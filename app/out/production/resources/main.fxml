@@ -37,7 +37,7 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane fx:id="persistenceActionView" minHeight="0.0" minWidth="0.0" prefHeight="-Infinity" prefWidth="-Infinity"  style="-fx-background-color: black"/>
               </items>
             </SplitPane>
          </children>

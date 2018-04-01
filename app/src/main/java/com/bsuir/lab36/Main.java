@@ -1,7 +1,10 @@
 package com.bsuir.lab36;
 
 import com.bsuir.lab36.controller.MainScreenController;
-import com.gameapi.GameObjectsPack;
+import com.datatransformerapi.DataProcessor;
+import com.datatransformerapi.DataProcessorFactory;
+import com.datatransformerapi.FormatDataTransformerFactory;
+import com.datatransformerapi.GameObjectsPack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +29,11 @@ public class Main extends Application {
             primaryStage.show();
 
             MainScreenController viewController = new MainScreenController();
-            viewController.setGameObjectPacks(mPluginManager.getExtensions(GameObjectsPack.class)).init(mRootLayout);
+            viewController.setGameObjectPacks(mPluginManager.getExtensions(GameObjectsPack.class))
+                          .setFormatDataTransformerFactories(mPluginManager
+                              .getExtensions(FormatDataTransformerFactory.class))
+                          .setDataProcessorFactories(mPluginManager.getExtensions(DataProcessorFactory.class))
+                          .init(mRootLayout);
 
         } catch (IOException e) {
             e.printStackTrace();

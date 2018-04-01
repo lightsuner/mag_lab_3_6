@@ -1,6 +1,6 @@
 package com.terran.unit;
 
-import com.gameapi.DefaultResourceCost;
+import com.datatransformerapi.DefaultResourceCost;
 
 public class Marine extends AbstractTerranUnit {
     static final String UNIT_NAME = "Marine";

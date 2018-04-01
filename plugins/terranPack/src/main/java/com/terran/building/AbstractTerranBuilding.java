@@ -1,7 +1,7 @@
 package com.terran.building;
 
-import com.gameapi.Building;
-import com.gameapi.ResourceCost;
+import com.datatransformerapi.Building;
+import com.datatransformerapi.ResourceCost;
 import com.terran.etc.RaceInfo;
 
 public abstract class AbstractTerranBuilding implements Building {

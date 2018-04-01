@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Plugin-Id: XMLFormatDataTransformer
+Plugin-Provider: 
+Plugin-Version: 1.0.0
+Plugin-Class: com.xmlformatdatatransformer.XMLFormatDataTransformerPlu
+ gin
+

@@ -1,8 +1,8 @@
 package com.terran.unit;
 
-import com.gameapi.BuildableUnit;
-import com.gameapi.ResourceCost;
-import com.gameapi.Unit;
+import com.datatransformerapi.BuildableUnit;
+import com.datatransformerapi.ResourceCost;
+import com.datatransformerapi.Unit;
 import com.terran.etc.RaceInfo;
 
 public abstract class AbstractTerranUnit implements Unit, BuildableUnit {

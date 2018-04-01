@@ -1,6 +1,6 @@
 package com.terran.building;
 
-import com.gameapi.DefaultResourceCost;
+import com.datatransformerapi.DefaultResourceCost;
 
 public class Barracks extends AbstractTerranBuilding {
     static final String UNIT_NAME = "Barracks";

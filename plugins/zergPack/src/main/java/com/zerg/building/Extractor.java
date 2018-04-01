@@ -1,6 +1,6 @@
 package com.zerg.building;
 
-import com.gameapi.DefaultResourceCost;
+import com.datatransformerapi.DefaultResourceCost;
 
 public class Extractor extends AbstractZergBuilding {
     static final String UNIT_NAME = "Extractor";

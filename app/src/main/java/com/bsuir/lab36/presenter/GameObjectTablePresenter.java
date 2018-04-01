@@ -2,9 +2,9 @@ package com.bsuir.lab36.presenter;
 
 import com.bsuir.lab36.utils.Callback;
 import com.bsuir.lab36.view.ActionsCellFactory;
-import com.gameapi.Building;
-import com.gameapi.GameObject;
-import com.gameapi.Unit;
+import com.datatransformerapi.Building;
+import com.datatransformerapi.GameObject;
+import com.datatransformerapi.Unit;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

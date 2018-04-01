@@ -1,6 +1,6 @@
 package com.terran.unit;
 
-import com.gameapi.DefaultResourceCost;
+import com.datatransformerapi.DefaultResourceCost;
 
 public class Battlecruiser extends AbstractTerranUnit {
     static final String UNIT_NAME = "Battlecruiser";

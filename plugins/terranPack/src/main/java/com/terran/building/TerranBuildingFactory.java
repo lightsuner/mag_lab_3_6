@@ -1,8 +1,8 @@
 package com.terran.building;
 
-import com.gameapi.Building;
-import com.gameapi.BuildingFactory;
-import com.gameapi.exception.FactoryFailedException;
+import com.datatransformerapi.Building;
+import com.datatransformerapi.BuildingFactory;
+import com.datatransformerapi.exception.FactoryFailedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

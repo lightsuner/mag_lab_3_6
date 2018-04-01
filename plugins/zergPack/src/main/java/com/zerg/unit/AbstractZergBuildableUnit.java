@@ -1,7 +1,7 @@
 package com.zerg.unit;
 
-import com.gameapi.BuildableUnit;
-import com.gameapi.ResourceCost;
+import com.datatransformerapi.BuildableUnit;
+import com.datatransformerapi.ResourceCost;
 
 
 public abstract class AbstractZergBuildableUnit extends AbstractZergUnit implements BuildableUnit {

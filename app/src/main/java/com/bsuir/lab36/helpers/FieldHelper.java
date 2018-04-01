@@ -27,7 +27,7 @@ public class FieldHelper {
         try {
             this.mGetMethod = object.getClass().getMethod("get" + mMethodNameBody);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         if (isFinal()) {
@@ -37,7 +37,7 @@ public class FieldHelper {
         try {
             this.mSetMethod = object.getClass().getMethod("set" + mMethodNameBody, mFieldType);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

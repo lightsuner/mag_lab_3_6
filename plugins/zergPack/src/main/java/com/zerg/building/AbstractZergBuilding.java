@@ -1,7 +1,7 @@
 package com.zerg.building;
 
-import com.gameapi.Building;
-import com.gameapi.ResourceCost;
+import com.datatransformerapi.Building;
+import com.datatransformerapi.ResourceCost;
 import com.zerg.etc.RaceInfo;
 
 public abstract class AbstractZergBuilding implements Building {

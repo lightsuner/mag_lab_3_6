@@ -1,6 +1,6 @@
 package com.bsuir.lab36.view;
 
-import com.gameapi.GameObject;
+import com.datatransformerapi.GameObject;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;

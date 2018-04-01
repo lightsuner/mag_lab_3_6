@@ -1,6 +1,10 @@
 include 'gameApi'
+include 'dataTransformerApi'
 include 'app'
 
 include 'plugins'
 include 'plugins:zergPack'
 include 'plugins:terranPack'
+
+include 'plugins:xmlFormatDataTransformer'
+include 'plugins:zipDataProcessor'

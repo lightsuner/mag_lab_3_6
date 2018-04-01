@@ -1,6 +1,6 @@
 package com.terran.building;
 
-import com.gameapi.DefaultResourceCost;
+import com.datatransformerapi.DefaultResourceCost;
 
 public class Starport extends AbstractTerranBuilding {
     static final String UNIT_NAME = "Starport";

@@ -4,6 +4,7 @@ mainClassName = 'com.bsuir.lab36.Main'
 
 dependencies {
   compile project(':gameApi')
+  compile project(':dataTransformerApi')
   compile group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}"
   compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
   compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'

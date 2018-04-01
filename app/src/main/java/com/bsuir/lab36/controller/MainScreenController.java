@@ -2,13 +2,12 @@ package com.bsuir.lab36.controller;
 
 import com.bsuir.lab36.presenter.GameObjectEditPresenter;
 import com.bsuir.lab36.presenter.GameObjectTablePresenter;
+import com.bsuir.lab36.presenter.PersistentControlsPresenter;
 import com.bsuir.lab36.presenter.UnitPackControlsPresenter;
-import com.gameapi.GameObject;
-import com.gameapi.GameObjectsPack;
+import com.datatransformerapi.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -22,6 +21,9 @@ public class MainScreenController {
     private List<GameObjectsPack> mGameObjectPacks;
     private ObservableList<GameObject> mGameObjects;
     private ScrollPane mEditContainer;
+    private Pane mPersistenceActionContainer;
+    private List<FormatDataTransformerFactory> mFormatDataTransformerFactories;
+    private List<DataProcessorFactory> mDataProcessorFactories;
 
     public MainScreenController() {
     }
@@ -37,6 +39,8 @@ public class MainScreenController {
         bindViews(rootLayout);
         createTablePresenter();
         createGamePackUI();
+        createGamePackUI();
+        createPersistentControls();
 
         mGameObjects.addListener((ListChangeListener<GameObject>) c -> System.out.println(c));
     }
@@ -45,6 +49,7 @@ public class MainScreenController {
         mMenuPane = (Pane) rootLayout.getScene().lookup("#menuPane");
         mTableView = (TableView<GameObject>) rootLayout.getScene().lookup("#tableView");
         mEditContainer = (ScrollPane) rootLayout.getScene().lookup("#editContainer");
+        mPersistenceActionContainer = (Pane) rootLayout.getScene().lookup("#persistenceActionView");
     }
 
     private void createGamePackUI() {
@@ -80,6 +85,15 @@ public class MainScreenController {
         mEditContainer.setContent(editPresenter.buildUI());
     }
 
+    private void createPersistentControls() {
+        PersistentControlsPresenter presenter = new PersistentControlsPresenter(mGameObjects, mFormatDataTransformerFactories, mDataProcessorFactories);
+        Pane pane = presenter.buildUI();
+        pane.prefWidthProperty().bind(mPersistenceActionContainer.widthProperty());
+        pane.prefHeightProperty().bind(mPersistenceActionContainer.heightProperty());
+
+        mPersistenceActionContainer.getChildren().addAll(pane);
+    }
+
     private void fireListUpdateOnItemChange(GameObject item) {
         int index = mGameObjects.indexOf(item);
         if (index == -1) {
@@ -90,5 +104,17 @@ public class MainScreenController {
 
     private void addNewGameObject(GameObject item) {
         mGameObjects.add(item);
+    }
+
+    public MainScreenController setFormatDataTransformerFactories(List<FormatDataTransformerFactory> factories) {
+        mFormatDataTransformerFactories = factories;
+
+        return this;
+    }
+
+    public MainScreenController setDataProcessorFactories(List<DataProcessorFactory> factories) {
+        mDataProcessorFactories = factories;
+
+        return this;
     }
 }

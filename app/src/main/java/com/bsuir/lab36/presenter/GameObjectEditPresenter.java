@@ -2,7 +2,7 @@ package com.bsuir.lab36.presenter;
 
 import com.bsuir.lab36.helpers.UIHelper;
 import com.bsuir.lab36.utils.Callback;
-import com.gameapi.GameObject;
+import com.datatransformerapi.GameObject;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
