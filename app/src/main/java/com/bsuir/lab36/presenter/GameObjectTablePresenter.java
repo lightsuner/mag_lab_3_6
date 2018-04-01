@@ -1,5 +1,6 @@
 package com.bsuir.lab36.presenter;
 
+import com.bsuir.lab36.utils.Callback;
 import com.bsuir.lab36.view.ActionsCellFactory;
 import com.gameapi.Building;
 import com.gameapi.GameObject;
@@ -13,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class GameObjectTablePresenter {
     private final ObservableList<GameObject> mData;
     private TableView<GameObject> mTableView;
+
+    private Callback<GameObject> mOnEditListener;
 
     private final TableColumn<GameObject, String> mRaceColumn = new TableColumn<>("Race");
     private final TableColumn<GameObject, String> mTypeColumn = new TableColumn<>("Type");
@@ -62,15 +65,17 @@ public class GameObjectTablePresenter {
         mTableView.setItems(mData);
     }
 
-
-    private boolean deleteItem(GameObject item) {
-        mData.remove(item);
-
-        return true;
+    public void setOnEditListener(Callback<GameObject> onEditListener) {
+        mOnEditListener = onEditListener;
     }
 
-    private boolean editItem(GameObject item) {
+    private void deleteItem(GameObject item) {
+        mData.remove(item);
+    }
 
-        return true;
+    private void editItem(GameObject item) {
+        if (mOnEditListener != null) {
+            mOnEditListener.call(item);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.bsuir.lab36;
 
-import com.bsuir.lab36.presenter.MainScreenPresenter;
+import com.bsuir.lab36.controller.MainScreenController;
 import com.gameapi.GameObjectsPack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,14 +14,8 @@ import java.io.IOException;
 public class Main extends Application {
     private static PluginManager mPluginManager;
     private Parent mRootLayout;
-    private MainScreenPresenter mViewPresenter;
-    //public class Main {
-/*    public static void main(String[] args) {
-        testPlugins();
-        //launch(args);
-    }*/
 
-    //@Override
+    @Override
     public void start(Stage primaryStage) {
         try {
             loadUI();
@@ -31,8 +25,8 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-            mViewPresenter = new MainScreenPresenter();
-            mViewPresenter.setGameObjectPacks(mPluginManager.getExtensions(GameObjectsPack.class)).init(mRootLayout);
+            MainScreenController viewController = new MainScreenController();
+            viewController.setGameObjectPacks(mPluginManager.getExtensions(GameObjectsPack.class)).init(mRootLayout);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,16 +54,5 @@ public class Main extends Application {
         // start and load all plugins of application
         mPluginManager.loadPlugins();
         mPluginManager.startPlugins();
-
-/*        // retrieve all extensions for "Greeting" extension point
-        List<GameObjectsPack> gameObjectPacks = pluginManager.getExtensions(GameObjectsPack.class);
-        System.out.println("Plugins count: " + gameObjectPacks.size());
-        for (GameObjectsPack gamePack : gameObjectPacks) {
-            System.out.println(">>> " + gamePack.getPackId() + ":\tBuildings: " + String
-                .join(", ", gamePack.getBuildingsList()) + "\t Units: " + String.join(", ", gamePack.getUnitsList()));
-        }
-
-        // stop and unload all plugins
-        pluginManager.stopPlugins();*/
     }
 }

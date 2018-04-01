@@ -42,6 +42,10 @@
             </SplitPane>
          </children>
         </AnchorPane>
-        <AnchorPane fx:id="editPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: aquamarine" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: aquamarine" >
+        <children>
+            <ScrollPane fx:id="editContainer" hbarPolicy="NEVER" minHeight="0.0" minWidth="0.0" style="-fx-background-color: beige" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+        </children>
+        </AnchorPane>
     </items>
 </SplitPane>

@@ -6,17 +6,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.util.Callback;
+import com.bsuir.lab36.utils.Callback;
 
-public class ActionsCellFactory implements Callback<TableColumn, TableCell> {
+public class ActionsCellFactory implements javafx.util.Callback<TableColumn, TableCell> {
 
-    private Callback<GameObject, Boolean> mOnEditCallback;
-    private Callback<GameObject, Boolean> mOnDeleteCallback;
+    private Callback<GameObject> mOnEditCallback;
+    private Callback<GameObject> mOnDeleteCallback;
 
     public ActionsCellFactory() {
     }
 
-    public ActionsCellFactory(Callback<GameObject, Boolean> onEditCallback, Callback<GameObject, Boolean> onDeleteCallback) {
+    public ActionsCellFactory(Callback<GameObject> onEditCallback, Callback<GameObject> onDeleteCallback) {
         mOnEditCallback = onEditCallback;
         mOnDeleteCallback = onDeleteCallback;
     }
