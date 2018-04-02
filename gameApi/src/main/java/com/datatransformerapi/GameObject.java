@@ -1,6 +1,8 @@
 package com.datatransformerapi;
 
-public interface GameObject {
+import java.io.Serializable;
+
+public interface GameObject extends Serializable {
     String getName();
 
     String getRace();

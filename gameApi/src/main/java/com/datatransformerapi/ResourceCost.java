@@ -1,6 +1,8 @@
 package com.datatransformerapi;
 
-public interface ResourceCost {
+import java.io.Serializable;
+
+public interface ResourceCost extends Serializable {
 
     int getMinerals();
 

@@ -7,5 +7,6 @@ include 'plugins:zergPack'
 include 'plugins:terranPack'
 
 include 'plugins:xmlFormatDataTransformer'
+include 'plugins:binFormatDataTransformer'
 include 'plugins:zipDataProcessor'
 include 'plugins:gZipDataProcessor'
