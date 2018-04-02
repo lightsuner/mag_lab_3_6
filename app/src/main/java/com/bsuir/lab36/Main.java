@@ -1,7 +1,7 @@
 package com.bsuir.lab36;
 
 import com.bsuir.lab36.controller.MainScreenController;
-import com.datatransformerapi.DataProcessor;
+import com.bsuir.lab36.utils.JoinClassLoader;
 import com.datatransformerapi.DataProcessorFactory;
 import com.datatransformerapi.FormatDataTransformerFactory;
 import com.datatransformerapi.GameObjectsPack;
@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import org.pf4j.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
     private static PluginManager mPluginManager;
@@ -27,6 +29,7 @@ public class Main extends Application {
             primaryStage.setTitle("BSUIR LAB 3 - 6!");
             primaryStage.setScene(scene);
             primaryStage.show();
+
 
             MainScreenController viewController = new MainScreenController();
             viewController.setGameObjectPacks(mPluginManager.getExtensions(GameObjectsPack.class))
@@ -54,12 +57,28 @@ public class Main extends Application {
     }
 
 
-    private static void loadPlugins() {
+    private void loadPlugins() {
         // create the plugin manager
         mPluginManager = new DefaultPluginManager();
 
         // start and load all plugins of application
         mPluginManager.loadPlugins();
         mPluginManager.startPlugins();
+
+        List<ClassLoader> classLoadersList = new ArrayList<>();
+
+        mPluginManager.getPlugins().forEach(pluginWrapper -> {
+            classLoadersList.add(pluginWrapper.getPluginClassLoader());
+        });
+
+
+        ClassLoader[] classLoadersArray = new ClassLoader[classLoadersList.size()];
+        classLoadersArray = classLoadersList.toArray(classLoadersArray);
+
+        if (!classLoadersList.isEmpty()) {
+            ClassLoader mainClassLoader = new JoinClassLoader(Thread.currentThread()
+                                                                    .getContextClassLoader(), classLoadersArray);
+            Thread.currentThread().setContextClassLoader(mainClassLoader);
+        }
     }
 }

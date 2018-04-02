@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,8 @@ public class PersistentControlsPresenter {
         Button saveBtn = new Button("Save");
 
         loadBtn.setMinWidth(200);
+        loadBtn.setOnMouseClicked(this::onLoadClick);
+
         saveBtn.setMinWidth(200);
         saveBtn.setOnMouseClicked(this::onSaveClick);
 
@@ -48,19 +51,11 @@ public class PersistentControlsPresenter {
     }
 
     private void onSaveClick(Event event) {
-        //FileChooser fileChooser = new FileChooser();
-        //fileChooser.setTitle("Save data");
-        //File file = fileChooser.showSaveDialog(mRootContainer.getScene().getWindow());
-/*        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-
-        VBox vbox = new VBox(new Text("Please select"), new Button("Ok."));
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setPadding(new Insets(15));
-
-        dialogStage.setScene(new Scene(vbox));
-        dialogStage.show();*/
         showSavePreference();
+    }
+
+    private void onLoadClick(Event event) {
+        loadFile();
     }
 
     private void showSavePreference() {
@@ -155,6 +150,57 @@ public class PersistentControlsPresenter {
         }
     }
 
+    private void loadFile() {
+        try {
+
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(mRootContainer.getScene().getWindow());
+            String fileExtensionParts[] = file.getName().split("\\.");
+
+            if (fileExtensionParts.length < 2) {
+                showErrorAlert();
+                return;
+            }
+
+            String lastExt = fileExtensionParts[fileExtensionParts.length - 1];
+            String prevExt = fileExtensionParts[fileExtensionParts.length - 2];
+
+            DataTransformer dataTransformer;
+            try {
+                dataTransformer = createTransformer(lastExt);
+            } catch (ClassNotFoundException e) {
+                dataTransformer = createTransformer(prevExt);
+                dataTransformer = createTransformer(lastExt, dataTransformer);
+            }
+
+            BufferedInputStream fileInputStream = null;
+
+            try {
+                fileInputStream = new BufferedInputStream(new FileInputStream(file));
+
+                Object[] gameObjects = (Object[]) dataTransformer.transform(fileInputStream);
+
+
+                List<GameObject> newGameObjects = new ArrayList<>();
+
+                for (Object gameObject : gameObjects) {
+                    newGameObjects.add((GameObject) gameObject);
+                }
+
+                mGameObjects.setAll(newGameObjects);
+
+            } finally {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showErrorAlert();
+        }
+    }
+
     private void showSuccessAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Saving...");
@@ -175,23 +221,23 @@ public class PersistentControlsPresenter {
         alert.showAndWait();
     }
 
-    private DataTransformer createTransformer(String type) {
+    private DataTransformer createTransformer(String type) throws ClassNotFoundException {
         Optional<FormatDataTransformerFactory> factory = mFormatDataTransformerFactories.stream()
                                                                                         .filter(f -> f.getType()
                                                                                                       .equals(type))
                                                                                         .findFirst();
         if (!factory.isPresent()) {
-            throw new RuntimeException("Factory " + type + " not found!");
+            throw new ClassNotFoundException("Factory " + type + " not found!");
         }
 
         return factory.get().create();
     }
 
-    private DataTransformer createTransformer(String type, DataTransformer dataTransformer) {
+    private DataTransformer createTransformer(String type, DataTransformer dataTransformer) throws ClassNotFoundException {
         Optional<DataProcessorFactory> factory = mDataProcessorFactories.stream().filter(f -> f.getType().equals(type))
                                                                         .findFirst();
         if (!factory.isPresent()) {
-            throw new RuntimeException("Factory " + type + " not found!");
+            throw new ClassNotFoundException("Factory " + type + " not found!");
         }
 
         return factory.get().create(dataTransformer);

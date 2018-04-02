@@ -54,7 +54,9 @@ public class MainScreenController {
 
     private void createGamePackUI() {
         mMenuPane.getChildren().clear();
-        mGameObjectPacks.forEach(this::addObjectPackView);
+        if (mGameObjectPacks != null) {
+            mGameObjectPacks.forEach(this::addObjectPackView);
+        }
     }
 
     private void createTablePresenter() {
