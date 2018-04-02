@@ -10,4 +10,11 @@ public abstract class DataProcessor implements DataTransformer {
     protected DataTransformer getDataTransformer() {
         return mDataTransformer;
     }
+
+    @Override
+    final public String getFormat() {
+        return mDataTransformer.getFormat() + "." + getFormatModifier();
+    }
+
+    abstract protected String getFormatModifier();
 }

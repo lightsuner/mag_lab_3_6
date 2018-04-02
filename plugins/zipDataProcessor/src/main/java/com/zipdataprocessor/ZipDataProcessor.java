@@ -49,7 +49,7 @@ public class ZipDataProcessor extends DataProcessor {
     }
 
     @Override
-    public String getFormat() {
+    protected String getFormatModifier() {
         return "zip";
     }
 
