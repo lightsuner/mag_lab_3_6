@@ -7,6 +7,7 @@ subprojects {
     maven { url 'https://jitpack.io' }
   }
 }
+
 // plugin location
 ext.pluginsDir = rootProject.buildDir.path + '/plugins'
 
