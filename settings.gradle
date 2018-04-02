@@ -8,3 +8,4 @@ include 'plugins:terranPack'
 
 include 'plugins:xmlFormatDataTransformer'
 include 'plugins:zipDataProcessor'
+include 'plugins:gZipDataProcessor'
